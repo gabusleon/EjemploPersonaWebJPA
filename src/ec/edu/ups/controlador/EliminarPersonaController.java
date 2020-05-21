@@ -17,12 +17,10 @@ import ec.edu.ups.entidades.Persona;
 @WebServlet("/EliminarPersonaController")
 public class EliminarPersonaController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private PersonaDAO personaDao;
-    private Persona persona;
+    private PersonaDAO personaDao;    
 
     public EliminarPersonaController() {
-	personaDao = DAOFactory.getFactory().getPersonaDAO();
-	persona = new Persona();
+	personaDao = DAOFactory.getFactory().getPersonaDAO();	
     }
 
     @Override
@@ -31,7 +29,7 @@ public class EliminarPersonaController extends HttpServlet {
 
 	String url = null;
 	try {
-	    persona.setCodigo(Integer.valueOf(request.getParameter("codigo")));
+	    Persona persona = personaDao.read(Integer.valueOf(request.getParameter("codigo")));	    
 	    personaDao.delete(persona);
 
 	    url = "/index.html";

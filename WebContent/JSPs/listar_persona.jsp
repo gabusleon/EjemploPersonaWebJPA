@@ -24,7 +24,7 @@
 				<td>${p.codigo}</td>				
 				<td>${p.nombre}</td>
 				<td>${p.apellido}</td>
-				<p>${p.fechaNacimiento}</p>
+				<td>${p.fechaFormatoJSP}</td>
 			</tr>
 		</c:forEach>
 	</table>

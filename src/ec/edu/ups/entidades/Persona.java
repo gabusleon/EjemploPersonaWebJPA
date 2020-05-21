@@ -20,6 +20,8 @@ public class Persona implements Serializable {
     private String apellido;
     @Temporal(TemporalType.DATE)
     private GregorianCalendar fechaNacimiento;
+    @Transient
+    private String fechaFormatoJSP;
 
     public Persona() {
     }
@@ -63,6 +65,15 @@ public class Persona implements Serializable {
 
     public void setFechaNacimiento(GregorianCalendar fechaNacimiento) {
 	this.fechaNacimiento = fechaNacimiento;
+    }
+    
+    public String getFechaFormatoJSP() {
+	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyy");	
+	return formato.format(fechaNacimiento.getTime());
+    }
+    
+    public void setFechaFormatoJSP(String fechaFormatoJSP) {
+	this.fechaFormatoJSP = fechaFormatoJSP;
     }
 
     // hashCode & equals

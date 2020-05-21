@@ -22,12 +22,10 @@ import ec.edu.ups.entidades.Persona;
 @WebServlet("/ActualizarPersonaController")
 public class ActualizarPersonaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private PersonaDAO personaDao;
-	private Persona persona;
+	private PersonaDAO personaDao;	
 
 	public ActualizarPersonaController() {
-		personaDao = DAOFactory.getFactory().getPersonaDAO();
-		persona = new Persona();
+		personaDao = DAOFactory.getFactory().getPersonaDAO();		
 	}
 
 	@Override
@@ -36,14 +34,15 @@ public class ActualizarPersonaController extends HttpServlet {
 
 		String url = null;
 		try {
-		    persona.setCodigo(Integer.valueOf(request.getParameter("codigo")));
+		    Persona persona = personaDao.read(Integer.valueOf(request.getParameter("codigo")));
+		    //actualizar
 		    persona.setNombre(request.getParameter("nombre"));
 		    persona.setApellido(request.getParameter("apellido"));
 		    String fecha = request.getParameter("fechaNacimiento");
 		    Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(fecha);
 		    GregorianCalendar cal = new GregorianCalendar();
 		    cal.setTime(date1);
-		    persona.setFechaNacimiento(cal);
+		    persona.setFechaNacimiento(cal);		    
 		    personaDao.update(persona);
 
 			url = "/index.html";
