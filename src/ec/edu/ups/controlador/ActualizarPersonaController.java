@@ -25,7 +25,7 @@ public class ActualizarPersonaController extends HttpServlet {
 	private PersonaDAO personaDao;	
 
 	public ActualizarPersonaController() {
-		personaDao = DAOFactory.getFactory().getPersonaDAO();		
+	    personaDao = DAOFactory.getFactory().getPersonaDAO();		
 	}
 
 	@Override
